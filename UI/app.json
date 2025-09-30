@@ -1,0 +1,8 @@
+{
+  "expo": {
+    "userInterfaceStyle": "automatic",
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
