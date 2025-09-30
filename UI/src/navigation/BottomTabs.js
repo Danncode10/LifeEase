@@ -1,39 +1,51 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
+
+import TasksScreen from '../screens/TasksScreen';
+import SchoolScreen from '../screens/SchoolScreen';
+import HealthScreen from '../screens/HealthScreen';
 
 const Tab = createBottomTabNavigator();
 
-function TasksScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Tasks Screen</Text>
-    </View>
-  );
-}
-
-function SchoolPlannerScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>School Planner Screen</Text>
-    </View>
-  );
-}
-
-function HealthScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Health Screen</Text>
-    </View>
-  );
-}
 
 export default function BottomTabs() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Tasks" component={TasksScreen} />
-      <Tab.Screen name="SchoolPlanner" component={SchoolPlannerScreen} />
-      <Tab.Screen name="Health" component={HealthScreen} />
+    <Tab.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: '#add8e6',
+        tabBarStyle: {
+          backgroundColor: 'white',
+        },
+      }}
+    >
+      <Tab.Screen 
+        name="Tasks" 
+        component={TasksScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="list" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen 
+        name="School" 
+        component={SchoolScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="school" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen 
+        name="Health" 
+        component={HealthScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="heart" size={size} color={color} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }

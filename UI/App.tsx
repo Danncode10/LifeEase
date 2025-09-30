@@ -9,9 +9,9 @@ import BottomTabs from './src/navigation/BottomTabs';
 
 export default function App() {
   return (
-    <GestureHandlerRootView style={styles.flex}>
+    <GestureHandlerRootView className="flex-1">
       <SafeAreaProvider>
-        <SafeAreaView className="flex-1 bg-white">
+        <SafeAreaView className="flex-1 bg-primary">
           <NavigationContainer>
             <BottomTabs />
           </NavigationContainer>
@@ -20,7 +20,3 @@ export default function App() {
     </GestureHandlerRootView>
   );
 }
-
-const styles = StyleSheet.create({
-  flex: { flex: 1 },
-});

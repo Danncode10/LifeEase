@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Modal, TextInput, TouchableHighlight } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, Modal, TextInput, TouchableHighlight } from 'react-native';
 
 const HealthScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -13,19 +13,19 @@ const HealthScreen = () => {
   ];
 
   const renderItem = ({ item }) => (
-    <View style={styles.item}>
+    <View className="p-4 border-b border-gray-300">
       <Text>{item.title}</Text>
     </View>
   );
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Health</Text>
+    <View className="flex-1">
+      <Text className="text-2xl font-bold p-4 bg-primary/10">Health</Text>
       <FlatList
         data={dummyData}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
-        style={styles.list}
+        className="flex-1"
       />
 
       <Modal
@@ -36,34 +36,34 @@ const HealthScreen = () => {
           setModalVisible(!modalVisible);
         }}
       >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalTitle}>Add New Health Activity</Text>
+        <View className="flex-1 justify-center items-center mt-5">
+          <View className="m-5 bg-white rounded-3xl p-9 items-center shadow-lg">
+            <Text className="mb-4 text-center text-lg font-bold">Add New Health Activity</Text>
             <TextInput
-              style={styles.input}
+              className="h-10 border border-gray-300 mb-4 px-2.5 w-full rounded"
               placeholder="Activity"
               value={activity}
               onChangeText={setActivity}
             />
             <TextInput
-              style={styles.input}
+              className="h-10 border border-gray-300 mb-4 px-2.5 w-full rounded"
               placeholder="Time (HH:MM)"
               value={time}
               onChangeText={setTime}
             />
-            <View style={styles.buttonContainer}>
+            <View className="flex-row justify-between w-full">
               <TouchableHighlight
-                style={[styles.button, styles.cancelButton]}
+                className="rounded-xl p-2.5 shadow-sm w-2/5 bg-gray-300"
                 onPress={() => {
                   setModalVisible(!modalVisible);
                   setActivity('');
                   setTime('');
                 }}
               >
-                <Text style={styles.buttonText}>Cancel</Text>
+                <Text className="text-white text-center font-bold">Cancel</Text>
               </TouchableHighlight>
               <TouchableHighlight
-                style={[styles.button, styles.saveButton]}
+                className="rounded-xl p-2.5 shadow-sm w-2/5 bg-primary"
                 onPress={() => {
                   console.log('Health Input:', { activity, time });
                   setModalVisible(!modalVisible);
@@ -71,117 +71,18 @@ const HealthScreen = () => {
                   setTime('');
                 }}
               >
-                <Text style={styles.buttonText}>Save</Text>
+                <Text className="text-white text-center font-bold">Save</Text>
               </TouchableHighlight>
             </View>
           </View>
         </View>
       </Modal>
 
-      <TouchableOpacity style={styles.fab} onPress={() => setModalVisible(true)}>
-        <Text style={styles.fabText}>+</Text>
+      <TouchableOpacity className="absolute right-4 bottom-4 w-14 h-14 rounded-full bg-primary justify-center items-center shadow-lg" onPress={() => setModalVisible(true)}>
+        <Text className="text-2xl text-white font-bold">+</Text>
       </TouchableOpacity>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    padding: 16,
-    backgroundColor: '#f0f0f0',
-  },
-  list: {
-    flex: 1,
-  },
-  item: {
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-  },
-  fab: {
-    position: 'absolute',
-    right: 16,
-    bottom: 16,
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: '#007AFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-  },
-  fabText: {
-    fontSize: 24,
-    color: 'white',
-    fontWeight: 'bold',
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  modalTitle: {
-    marginBottom: 15,
-    textAlign: 'center',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 15,
-    paddingHorizontal: 10,
-    width: '100%',
-    borderRadius: 5,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-    width: '48%',
-  },
-  cancelButton: {
-    backgroundColor: '#ccc',
-  },
-  saveButton: {
-    backgroundColor: '#007AFF',
-  },
-  buttonText: {
-    color: 'white',
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
-});
 
 export default HealthScreen;
