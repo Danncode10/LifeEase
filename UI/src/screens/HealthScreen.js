@@ -1,7 +1,11 @@
-import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Modal, TextInput, TouchableHighlight } from 'react-native';
 
 const HealthScreen = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [activity, setActivity] = useState('');
+  const [time, setTime] = useState('');
+
   const dummyData = [
     { id: '1', title: 'Placeholder Workout 1' },
     { id: '2', title: 'Placeholder Workout 2' },
@@ -23,7 +27,58 @@ const HealthScreen = () => {
         keyExtractor={(item) => item.id}
         style={styles.list}
       />
-      <TouchableOpacity style={styles.fab}>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalTitle}>Add New Health Activity</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Activity"
+              value={activity}
+              onChangeText={setActivity}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Time (HH:MM)"
+              value={time}
+              onChangeText={setTime}
+            />
+            <View style={styles.buttonContainer}>
+              <TouchableHighlight
+                style={[styles.button, styles.cancelButton]}
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                  setActivity('');
+                  setTime('');
+                }}
+              >
+                <Text style={styles.buttonText}>Cancel</Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={[styles.button, styles.saveButton]}
+                onPress={() => {
+                  console.log('Health Input:', { activity, time });
+                  setModalVisible(!modalVisible);
+                  setActivity('');
+                  setTime('');
+                }}
+              >
+                <Text style={styles.buttonText}>Save</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
+      <TouchableOpacity style={styles.fab} onPress={() => setModalVisible(true)}>
         <Text style={styles.fabText}>+</Text>
       </TouchableOpacity>
     </View>
@@ -67,6 +122,64 @@ const styles = StyleSheet.create({
   fabText: {
     fontSize: 24,
     color: 'white',
+    fontWeight: 'bold',
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalTitle: {
+    marginBottom: 15,
+    textAlign: 'center',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 15,
+    paddingHorizontal: 10,
+    width: '100%',
+    borderRadius: 5,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    width: '48%',
+  },
+  cancelButton: {
+    backgroundColor: '#ccc',
+  },
+  saveButton: {
+    backgroundColor: '#007AFF',
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
     fontWeight: 'bold',
   },
 });
