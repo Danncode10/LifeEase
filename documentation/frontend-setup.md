@@ -120,27 +120,36 @@ Imagine your phone apps with tabs at the bottom (like Instagram's home, search, 
    - **What this does**: `createBottomTabNavigator` makes the tabs. Each `<Tab.Screen>` is like a button at the bottom that loads a screen when tapped.
    - For beginners: Copy this into your file, and it creates the skeleton for navigation.
 
-3. **Integrate into App.tsx** (the main app file):
-   - Open `UI/App.tsx`.
-   - Import `NavigationContainer` from `@react-navigation/native` and your `BottomTabs`.
-   - Wrap your app content in `<NavigationContainer><BottomTabs /></NavigationContainer>`.
-   - Example:
+3. **Integrate into App.tsx** (Step 2.6: Connect Navigation to App – the main app file):
+   - Open `UI/App.tsx`. This is the entry point where all app components come together.
+   - Add imports for `NavigationContainer` (from `@react-navigation/native`) and `BottomTabs` (from your local navigation file).
+   - Replace the basic content (like welcome text) inside the `SafeAreaView` with `<NavigationContainer><BottomTabs /></NavigationContainer>`. Keep existing wrappers like `GestureHandlerRootView` and `SafeAreaProvider` for proper screen handling and gestures.
+   - Updated Example (matching the core setup):
      ```tsx
+     import "./global.css" // Mandatory for NativeWind
+     import 'react-native-gesture-handler';
+     import React from 'react';
+     import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+     import { GestureHandlerRootView } from 'react-native-gesture-handler';
      import { NavigationContainer } from '@react-navigation/native';
      import BottomTabs from './src/navigation/BottomTabs';
-     import { StatusBar } from 'expo-status-bar';
 
      export default function App() {
        return (
-         <NavigationContainer>
-           <BottomTabs />
-           <StatusBar style="auto" />
-         </NavigationContainer>
+         <GestureHandlerRootView style={{ flex: 1 }}>
+           <SafeAreaProvider>
+             <SafeAreaView className="flex-1 bg-white">
+               <NavigationContainer>
+                 <BottomTabs />
+               </NavigationContainer>
+             </SafeAreaView>
+           </SafeAreaProvider>
+         </GestureHandlerRootView>
        );
      }
      ```
-   - **Why NavigationContainer?**: It's like a wrapper that makes all navigation work. Without it, tabs won't appear.
-   - Save and run `npx expo start` (or `npm start`) to see the tabs. Scan the QR code with Expo Go app on your phone.
+   - **Why NavigationContainer?**: Think of it as the "control center" that enables smooth switching between screens. It handles routes (like addresses for each tab) so tapping a tab instantly loads the right content without glitches. BottomTabs renders the three tabs: Tasks (for daily to-dos), School (for class planning), and Health (for wellness tracking).
+   - **Core Functionality**: This setup creates a tabbed interface at the bottom of the screen. Users can tap to jump between sections effortlessly—each tab displays a scrollable list of placeholder items (e.g., "Placeholder Task 1") using NativeWind/Tailwind for clean styling. Tapping the floating "+" button opens a simple modal pop-up for adding new items (inputs like name/due date, with Save logging to console for now). It's beginner-friendly: No complex routing code needed; just wrap and go. Run `npx expo start` from the `UI/` folder, scan the QR in Expo Go—expect three tabs at the bottom, lists in each, and a working "+" modal that slides up when tapped.
 
 If tabs don't show, ensure all navigation packages are installed (step 2 in Installation).
 
@@ -372,8 +381,8 @@ To confirm successful installation and implementation:
    ```
    npx expo start
    ```
-   - Use the Expo Go mobile application to scan the QR code and load the application. You should see three tabs at the bottom.
-   - Tap each tab: Verify titles, scrollable lists with placeholders, and a blue "+" button (tap it—nothing happens yet, but it's ready for modals).
+   - Use the Expo Go mobile application to scan the QR code and load the application. You should see three tabs at the bottom, each loading a screen with a title, scrollable placeholder list, and a floating "+" button that opens a modal for adding items (try typing and saving—it logs to the console).
+   - Tap tabs to switch seamlessly: Verify smooth transitions, Tailwind-styled elements (e.g., white background, centered content), and modal functionality (slides up with input fields and buttons).
 
 2. Inspect the `UI` directory for:
    - The `src/navigation/` and `src/screens/` folders.
