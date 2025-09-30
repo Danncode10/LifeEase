@@ -1,0 +1,112 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Backend (FastAPI/Python) specifics
+server/__pycache__/
+server/venv/
+server/.env
+server/db.sqlite3
+server/instance/
+server/.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.pytest_cache/
+
+# Frontend (React Native/Expo) specifics
+UI/node_modules/
+UI/.expo/
+UI/expo-image-cache/
+UI/build/
+UI/dist/
+UI/.env
+UI/.gradle/
+UI/local.properties
+UI/android/.gradle/
+UI/android/captures/
+UI/android/app/build/
+UI/android/gradlew
+UI/android/gradlew.bat
+UI/ios/Pods/
+UI/ios/Podfile.lock
+UI/ios/build/
+UI/coverage/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Dependencies
+.npm/
+.yarn/
+
+# Temporary files
+*.tmp
+*.temp
+
+# SQLite databases (exclude development/prototype db)
+*.db
+!db.sqlite3  # If you want to track a sample DB, adjust accordingly
