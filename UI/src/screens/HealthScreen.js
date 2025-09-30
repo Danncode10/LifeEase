@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Modal, TextInput, TouchableHighlight } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 const HealthScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -13,14 +14,14 @@ const HealthScreen = () => {
   ];
 
   const renderItem = ({ item }) => (
-    <View className="p-4 border-b border-gray-300">
-      <Text>{item.title}</Text>
+    <View className="m-2 p-4 bg-white rounded-lg shadow-sm border border-gray-200">
+      <Text className="text-lg font-semibold text-gray-800">{item.title}</Text>
     </View>
   );
 
   return (
-    <View className="flex-1">
-      <Text className="text-2xl font-bold p-4 bg-primary/10">Health</Text>
+    <View className="flex-1 bg-health">
+      <Text className="text-2xl font-bold p-4 bg-health/10">Health</Text>
       <FlatList
         data={dummyData}
         renderItem={renderItem}
@@ -53,17 +54,17 @@ const HealthScreen = () => {
             />
             <View className="flex-row justify-between w-full">
               <TouchableHighlight
-                className="rounded-xl p-2.5 shadow-sm w-2/5 bg-gray-300"
+                className="rounded-xl p-2.5 shadow-sm w-2/5 bg-white border border-gray-300"
                 onPress={() => {
                   setModalVisible(!modalVisible);
                   setActivity('');
                   setTime('');
                 }}
               >
-                <Text className="text-white text-center font-bold">Cancel</Text>
+                <Text className="text-darkblue text-center font-bold">Cancel</Text>
               </TouchableHighlight>
               <TouchableHighlight
-                className="rounded-xl p-2.5 shadow-sm w-2/5 bg-primary"
+                className="rounded-xl p-2.5 shadow-sm w-2/5 bg-white border border-health"
                 onPress={() => {
                   console.log('Health Input:', { activity, time });
                   setModalVisible(!modalVisible);
@@ -71,15 +72,15 @@ const HealthScreen = () => {
                   setTime('');
                 }}
               >
-                <Text className="text-white text-center font-bold">Save</Text>
+                <Text className="text-darkblue text-center font-bold">Save</Text>
               </TouchableHighlight>
             </View>
           </View>
         </View>
       </Modal>
 
-      <TouchableOpacity className="absolute right-4 bottom-4 w-14 h-14 rounded-full bg-primary justify-center items-center shadow-lg" onPress={() => setModalVisible(true)}>
-        <Text className="text-2xl text-white font-bold">+</Text>
+      <TouchableOpacity className="absolute right-4 bottom-20 w-16 h-16 rounded-full bg-white border-2 border-health justify-center items-center shadow-xl" onPress={() => setModalVisible(true)}>
+        <Ionicons name="add" size={30} color="darkblue" />
       </TouchableOpacity>
     </View>
   );

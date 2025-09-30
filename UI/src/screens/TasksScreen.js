@@ -20,7 +20,7 @@ const TasksScreen = () => {
   );
 
   return (
-    <View className="flex-1">
+    <View className="flex-1 bg-primary">
       <Text className="text-2xl font-bold p-4 bg-primary/10">Tasks</Text>
       <FlatList
         data={dummyData}
@@ -54,17 +54,17 @@ const TasksScreen = () => {
             />
             <View className="flex-row justify-between w-full">
               <TouchableHighlight
-                className="rounded-xl p-2.5 shadow-sm w-2/5 bg-gray-300"
+                className="rounded-xl p-2.5 shadow-sm w-2/5 bg-white border border-gray-300"
                 onPress={() => {
                   setModalVisible(!modalVisible);
                   setName('');
                   setDueDate('');
                 }}
               >
-                <Text className="text-white text-center font-bold">Cancel</Text>
+                <Text className="text-darkblue text-center font-bold">Cancel</Text>
               </TouchableHighlight>
               <TouchableHighlight
-                className="rounded-xl p-2.5 shadow-sm w-2/5 bg-primary"
+                className="rounded-xl p-2.5 shadow-sm w-2/5 bg-white border border-primary"
                 onPress={() => {
                   console.log('Task Input:', { name, dueDate });
                   setModalVisible(!modalVisible);
@@ -72,15 +72,15 @@ const TasksScreen = () => {
                   setDueDate('');
                 }}
               >
-                <Text className="text-white text-center font-bold">Save</Text>
+                <Text className="text-primary text-center font-bold">Save</Text>
               </TouchableHighlight>
             </View>
           </View>
         </View>
       </Modal>
 
-      <TouchableOpacity className="absolute right-4 bottom-20 w-16 h-16 rounded-full bg-primary justify-center items-center shadow-xl" onPress={() => setModalVisible(true)}>
-        <Ionicons name="add" size={30} color="white" />
+      <TouchableOpacity className="absolute right-4 bottom-20 w-16 h-16 rounded-full bg-white border-2 border-primary justify-center items-center shadow-xl" onPress={() => setModalVisible(true)}>
+        <Ionicons name="add" size={30} color="primary" />
       </TouchableOpacity>
     </View>
   );
