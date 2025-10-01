@@ -13,8 +13,8 @@ export default function BottomTabs() {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: '#ffcc00', // Yellow accent for active tab
-        tabBarInactiveTintColor: '#60a5fa', // Light blue accent for inactive tabs
+        tabBarActiveTintColor: '#ffcc00', // Default, but overridden per tab
+        tabBarInactiveTintColor: '#60a5fa', // Light blue for inactive
         tabBarStyle: {
           backgroundColor: '#121212', // Dark background for tab bar
           elevation: 10, // Shadow for modern look
@@ -25,6 +25,14 @@ export default function BottomTabs() {
           shadowOpacity: 0.3,
           shadowRadius: 5,
         },
+        headerStyle: {
+          backgroundColor: '#121212', // Dark background for header
+        },
+        headerTintColor: '#ffcc00', // Yellow color for header text/icons
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+        headerShown: false, // Hide the header to remove white background section
       }}
     >
       <Tab.Screen 
@@ -34,6 +42,7 @@ export default function BottomTabs() {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="list" size={size} color={color} />
           ),
+          tabBarActiveTintColor: '#10b981', // Green for Tasks active
         }}
       />
       <Tab.Screen 
@@ -43,6 +52,7 @@ export default function BottomTabs() {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="school" size={size} color={color} />
           ),
+          tabBarActiveTintColor: '#f59e0b', // Yellow for School active
         }}
       />
       <Tab.Screen 
@@ -52,6 +62,7 @@ export default function BottomTabs() {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="heart" size={size} color={color} />
           ),
+          tabBarActiveTintColor: '#ef4444', // Red for Health active
         }}
       />
     </Tab.Navigator>
