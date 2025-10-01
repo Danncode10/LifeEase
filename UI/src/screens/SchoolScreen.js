@@ -14,19 +14,20 @@ const SchoolScreen = () => {
   ];
 
   const renderItem = ({ item }) => (
-    <View className="m-2 p-4 bg-white rounded-lg shadow-sm border border-gray-200">
-      <Text className="text-lg font-semibold text-gray-800">{item.title}</Text>
+    <View className="m-3 p-5 bg-gray-800 rounded-2xl shadow-md border border-yellow-400">
+      <Text className="text-lg font-semibold text-yellow-400">{item.title}</Text>
     </View>
   );
 
   return (
-    <View className="flex-1 bg-school">
-      <Text className="text-2xl font-bold p-4 bg-school/10">School Planner</Text>
+    <View className="flex-1 bg-gray-900 p-5">
+      <Text className="text-3xl font-extrabold mb-6 text-yellow-400">School Planner</Text>
       <FlatList
         data={dummyData}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         className="flex-1"
+        contentContainerStyle={{ paddingBottom: 100 }}
       />
 
       <Modal
@@ -37,50 +38,58 @@ const SchoolScreen = () => {
           setModalVisible(!modalVisible);
         }}
       >
-        <View className="flex-1 justify-center items-center mt-5">
-          <View className="m-5 bg-white rounded-3xl p-9 items-center shadow-lg">
-            <Text className="mb-4 text-center text-lg font-bold">Add New School Item</Text>
+        <View className="flex-1 justify-center items-center bg-black bg-opacity-70">
+          <View className="m-6 bg-gray-800 rounded-3xl p-8 w-11/12 max-w-md shadow-xl border border-yellow-400">
+            <Text className="mb-6 text-center text-xl font-bold text-yellow-400">Add New School Item</Text>
             <TextInput
-              className="h-10 border border-gray-300 mb-4 px-2.5 w-full rounded"
+              className="h-12 border border-gray-600 mb-5 px-4 rounded-lg text-base text-gray-200"
               placeholder="Subject"
+              placeholderTextColor="#9ca3af"
               value={subject}
               onChangeText={setSubject}
             />
             <TextInput
-              className="h-10 border border-gray-300 mb-4 px-2.5 w-full rounded"
+              className="h-12 border border-gray-600 mb-6 px-4 rounded-lg text-base text-gray-200"
               placeholder="Deadline (YYYY-MM-DD)"
+              placeholderTextColor="#9ca3af"
               value={deadline}
               onChangeText={setDeadline}
             />
             <View className="flex-row justify-between w-full">
               <TouchableHighlight
-                className="rounded-xl p-2.5 shadow-sm w-2/5 bg-white border border-gray-300"
+                className="rounded-xl p-3 shadow-sm w-2/5 bg-gray-700 border border-blue-400"
                 onPress={() => {
-                  setModalVisible(!modalVisible);
+                  setModalVisible(false);
                   setSubject('');
                   setDeadline('');
                 }}
+                underlayColor="#1e40af"
               >
-                <Text className="text-darkblue text-center font-bold">Cancel</Text>
+                <Text className="text-blue-400 text-center font-semibold">Cancel</Text>
               </TouchableHighlight>
               <TouchableHighlight
-                className="rounded-xl p-2.5 shadow-sm w-2/5 bg-white border border-school"
+                className="rounded-xl p-3 shadow-sm w-2/5 bg-yellow-400 border border-yellow-400"
                 onPress={() => {
                   console.log('School Input:', { subject, deadline });
-                  setModalVisible(!modalVisible);
+                  setModalVisible(false);
                   setSubject('');
                   setDeadline('');
                 }}
+                underlayColor="#facc15"
               >
-                <Text className="text-school text-center font-bold">Save</Text>
+                <Text className="text-gray-900 text-center font-semibold">Save</Text>
               </TouchableHighlight>
             </View>
           </View>
         </View>
       </Modal>
 
-      <TouchableOpacity className="absolute right-4 bottom-20 w-16 h-16 rounded-full bg-white border-2 border-school justify-center items-center shadow-xl" onPress={() => setModalVisible(true)}>
-        <Ionicons name="add" size={30} color="darkblue" />
+      <TouchableOpacity
+        className="absolute right-5 bottom-20 w-16 h-16 rounded-full bg-yellow-400 border-2 border-yellow-400 justify-center items-center shadow-lg"
+        onPress={() => setModalVisible(true)}
+        activeOpacity={0.8}
+      >
+        <Ionicons name="add" size={32} color="#1e3a8a" />
       </TouchableOpacity>
     </View>
   );

@@ -13,10 +13,17 @@ export default function BottomTabs() {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: 'white',
-        tabBarInactiveTintColor: 'gray',
+        tabBarActiveTintColor: '#ffcc00', // Yellow accent for active tab
+        tabBarInactiveTintColor: '#60a5fa', // Light blue accent for inactive tabs
         tabBarStyle: {
-          backgroundColor: 'darkblue',
+          backgroundColor: '#121212', // Dark background for tab bar
+          elevation: 10, // Shadow for modern look
+          paddingVertical: 10, // Padding for spacing
+          borderTopWidth: 0, // Remove top border for cleaner look
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: -3 },
+          shadowOpacity: 0.3,
+          shadowRadius: 5,
         },
       }}
     >
