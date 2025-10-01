@@ -16,10 +16,12 @@ export default function BottomTabs() {
         tabBarActiveTintColor: '#ffcc00', // Default, but overridden per tab
         tabBarInactiveTintColor: '#60a5fa', // Light blue for inactive
         tabBarStyle: {
-          backgroundColor: '#121212', // Dark background for tab bar
+          backgroundColor: '#1f1f1f', // Lighter shade for tab bar
           elevation: 10, // Shadow for modern look
           paddingVertical: 10, // Padding for spacing
           borderTopWidth: 0, // Remove top border for cleaner look
+          borderTopLeftRadius: 30,
+          borderTopRightRadius: 30,
           shadowColor: '#000',
           shadowOffset: { width: 0, height: -3 },
           shadowOpacity: 0.3,
