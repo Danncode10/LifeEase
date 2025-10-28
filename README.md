@@ -1,94 +1,65 @@
-# 📌 LifeEase – App Master Plan (Prototype with FastAPI)
+# 📌 LifeEase – Simple App
 
 ## 🎯 Goal
 
-To build a **prototype app** of LifeEase with:
+To build a **simple functional app** called LifeEase with:
 
-1. **Task Manager**
-2. **School Activity Planner**
-3. **Health & Wellness Tool**
+1. **Task Manager** – Basic to-do list
+2. **School Activity Planner** – Simple planning for school tasks
+3. **Health & Wellness Tool** – Basic health logging
 
-Instead of Firebase, we’ll use a **FastAPI backend** with a lightweight database (e.g., SQLite) to handle storage.
-
----
-
-## 🛠️ Phase 1 – Setup & Project Structure
-
-* Clone starter repo into `UI/` folder.
-* Uninitialize Git (`rm -rf .git`).
-* Create `documentation/` folder.
-* Install frontend dependencies: Expo, NativeWind, React Navigation, Axios, Expo Notifications.
-* Create backend folder `server/` with FastAPI + SQLite.
+The app uses a **FastAPI backend** with SQLite for simple storage and a React Native frontend for easy use.
 
 ---
 
-## 📱 Phase 2 – Core UI Development (Frontend)
+## 🛠️ Setup & Project Structure
 
-* Implement bottom navigation with **3 tabs**:
-
-  1. **Tasks**
-  2. **School Planner**
-  3. **Health**
-
-* Each screen should have:
-
-  * A **list view** for displaying items (fetched from API).
-  * A **+ button** to add items (sends POST request to API).
-  * A **form modal** for input (e.g., task name, due date).
+* UI folder contains the React Native app (Expo).
+* Server folder contains the FastAPI backend.
+* Documentation folder has setup guides.
 
 ---
 
-## ⚙️ Phase 3 – Backend (FastAPI)
+## 📱 Core UI Development (Frontend)
 
-* Create a `server/` folder with FastAPI.
+* Bottom navigation with **3 tabs**:
 
-* Define routes:
+  1. **Tasks** – List and add tasks
+  2. **School Planner** – List and add school activities
+  3. **Health** – List and add health entries
 
-  * `GET /tasks` – Fetch tasks.
-  * `POST /tasks` – Add task.
-  * `GET /school` – Fetch school activities.
-  * `POST /school` – Add activity.
-  * `GET /health` – Fetch health logs.
-  * `POST /health` – Add health entry.
-
-* Use **SQLite** with SQLAlchemy for persistence.
-
-* Run backend locally (localhost:8000) or host on free service (e.g., Railway, Render).
+* Each screen has:
+  * A **list view** for items (from API).
+  * A **+ button** to add items (POST to API).
+  * A **simple form** for input.
 
 ---
 
-## 🔗 Phase 4 – Frontend ↔ Backend Integration
+## ⚙️ Backend (FastAPI)
 
-* Use **Axios** in React Native to call FastAPI routes.
-* On app start, fetch data from API.
-* When user adds new task/activity/medication, send it to FastAPI via POST.
+* In `server/`:
+  * Routes for GET/POST tasks, school, health.
+  * SQLite + SQLAlchemy for data.
 
----
-
-## 🔔 Phase 5 – Notifications & Reminders
-
-* Use **Expo Notifications** for local reminders.
-* Logic:
-
-  * Fetch deadlines/times from API.
-  * Schedule notifications locally on device.
+* Run locally or on a free host like Railway.
 
 ---
 
-## 🎨 Phase 6 – Polish & Demo-Ready
+## 🔗 Integration
+
+* Frontend uses Axios to call backend APIs.
+* Fetch data on app start.
+* Add items via POST.
+
+---
+
+## 🎨 Basic Polish
 
 * Refine UI with NativeWind.
-* Add onboarding screen.
-* Write documentation in `/documentation` folder:
-
-  * How to run backend.
-  * How to run frontend.
-  * Prototype features available.
+* Write basic documentation for running app.
 
 ---
 
-## 📦 Out of Scope (for Prototype)
+## 📦 Keep It Simple
 
-* Full authentication.
-* Cloud deployment at scale.
-* Store publishing.
+No notifications, authentication, or complex features.
