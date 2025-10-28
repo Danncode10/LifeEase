@@ -86,15 +86,15 @@ const HealthScreen = () => {
                 className="rounded-xl p-3 shadow-sm w-2/5 bg-red-400 border border-red-400"
                 onPress={async () => {
                   try {
-                    await axios.post(`${BASE_URL}/health/`, {
+                    const response = await axios.post(`${BASE_URL}/health/`, {
                       activity: activity,
                       time: time,
                       user_id: userId
                     });
+                    console.log('Health entry saved successfully:', response.data);
                     setModalVisible(false);
                     setActivity('');
                     setTime('');
-                    console.log('Health entry saved successfully:', response.data);
                     fetchHealthEntries(); // Refresh list
                   } catch (error) {
                     console.error('Error saving health entry:', error.response ? error.response.data : error.message);
