@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional
-from . import models
-from .database import SessionLocal, engine
+from server import models
+from server.database import SessionLocal, engine
 
 models.Base.metadata.create_all(bind=engine)
 
