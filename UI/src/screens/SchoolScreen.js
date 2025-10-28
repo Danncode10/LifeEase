@@ -2,18 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Modal, TextInput, TouchableHighlight, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
-
-const getBaseUrl = () => {
-  if (Platform.OS === 'android') {
-    return 'http://13.251.228.254:8000'; // EC2 backend
-  } else if (Platform.OS === 'ios') {
-    return 'http://13.251.228.254:8000'; // EC2 backend
-  } else {
-    return 'http://13.251.228.254:8000'; // EC2 backend
-  }
-};
-
-const BASE_URL = getBaseUrl();
+import { BASE_URL } from '../config/apiConfig';
 
 const SchoolScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
