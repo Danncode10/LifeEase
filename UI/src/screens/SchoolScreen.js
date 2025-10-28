@@ -1,7 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, Modal, TextInput, TouchableHighlight } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, Modal, TextInput, TouchableHighlight, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
+
+const getBaseUrl = () => {
+  if (Platform.OS === 'android') {
+    return 'http://10.0.2.2:8000'; // Android emulator localhost
+  } else if (Platform.OS === 'ios') {
+    return 'http://127.0.0.1:8000'; // iOS simulator localhost
+  } else {
+    return 'http://192.168.100.166:8000'; // Replace with your local machine's IP address if using a physical device
+  }
+};
+
+const BASE_URL = getBaseUrl();
 
 const SchoolScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -18,7 +30,7 @@ const SchoolScreen = () => {
   const fetchSchoolActivities = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://192.168.100.166:8000/school/?user_id=${userId}`);
+      const response = await axios.get(`${BASE_URL}/school/?user_id=${userId}`);
       setSchoolActivities(response.data);
     } catch (error) {
       console.error('Error fetching school activities:', error);
@@ -85,7 +97,7 @@ const SchoolScreen = () => {
                 className="rounded-xl p-3 shadow-sm w-2/5 bg-yellow-400 border border-yellow-400"
                 onPress={async () => {
                   try {
-                    await axios.post('http://192.168.100.166:8000/school/', {
+                    await axios.post(`${BASE_URL}/school/`, {
                       subject: subject,
                       deadline: deadline ? `${deadline}T00:00:00` : null,
                       user_id: userId
