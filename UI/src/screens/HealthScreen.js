@@ -94,9 +94,10 @@ const HealthScreen = () => {
                     setModalVisible(false);
                     setActivity('');
                     setTime('');
+                    console.log('Health entry saved successfully:', response.data);
                     fetchHealthEntries(); // Refresh list
                   } catch (error) {
-                    console.error('Error saving health entry:', error);
+                    console.error('Error saving health entry:', error.response ? error.response.data : error.message);
                   }
                 }}
                 underlayColor="#fca5a5"

@@ -9,6 +9,21 @@ from fastapi.middleware.cors import CORSMiddleware
 
 models.Base.metadata.create_all(bind=engine)
 
+def create_initial_user(db: Session):
+    # Check if a user with ID 1 already exists
+    if db.query(models.User).filter(models.User.id == 1).first() is None:
+        new_user = models.User(id=1, name="Default User", email="default@example.com")
+        db.add(new_user)
+        db.commit()
+        db.refresh(new_user)
+        print("Created initial user with ID 1.")
+    else:
+        print("User with ID 1 already exists.")
+
+# Call this function to ensure an initial user exists
+with SessionLocal() as db:
+    create_initial_user(db)
+
 app = FastAPI()
 
 app.add_middleware(
