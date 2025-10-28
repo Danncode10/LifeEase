@@ -108,5 +108,5 @@ pids
 *.temp
 
 # SQLite databases (exclude development/prototype db)
-*.db
-!db.sqlite3  # If you want to track a sample DB, adjust accordingly
+# *.db
+# !db.sqlite3  # If you want to track a sample DB, adjust accordingly
