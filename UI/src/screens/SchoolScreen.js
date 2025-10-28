@@ -5,11 +5,11 @@ import axios from 'axios';
 
 const getBaseUrl = () => {
   if (Platform.OS === 'android') {
-    return 'http://10.0.2.2:8000'; // Android emulator localhost
+    return 'http://13.251.228.254:8000'; // EC2 backend
   } else if (Platform.OS === 'ios') {
-    return 'http://127.0.0.1:8000'; // iOS simulator localhost
+    return 'http://13.251.228.254:8000'; // EC2 backend
   } else {
-    return 'http://192.168.100.166:8000'; // Replace with your local machine's IP address if using a physical device
+    return 'http://13.251.228.254:8000'; // EC2 backend
   }
 };
 
