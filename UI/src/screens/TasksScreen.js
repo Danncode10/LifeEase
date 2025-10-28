@@ -1,17 +1,31 @@
-import React, { useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, Modal, TextInput, TouchableHighlight, Alert } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList, TouchableOpacity, Modal, TextInput, TouchableHighlight } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import axios from 'axios';
 
 const TasksScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [name, setName] = useState('');
   const [dueDate, setDueDate] = useState('');
+  const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const userId = 1; // Temporary fixed user ID for prototype
 
-  const dummyData = [
-    { id: '1', title: 'Placeholder Task 1' },
-    { id: '2', title: 'Placeholder Task 2' },
-    { id: '3', title: 'Placeholder Task 3' },
-  ];
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
+  const fetchTasks = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(`http://192.168.100.166:8000/tasks/?user_id=${userId}`);
+      setTasks(response.data);
+    } catch (error) {
+      console.error('Error fetching tasks:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const renderItem = ({ item }) => (
     <View className="m-3 p-5 bg-gray-800 rounded-2xl shadow-md border border-green-400">
@@ -23,7 +37,7 @@ const TasksScreen = () => {
     <View className="flex-1 bg-gray-900 p-5">
       <Text className="text-3xl font-extrabold mb-6 text-green-400">Tasks</Text>
       <FlatList
-        data={dummyData}
+        data={tasks}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         className="flex-1"
@@ -69,11 +83,20 @@ const TasksScreen = () => {
               </TouchableHighlight>
               <TouchableHighlight
                 className="rounded-xl p-3 shadow-sm w-2/5 bg-green-400 border border-green-400"
-                onPress={() => {
-                  console.log('Task Input:', { name, dueDate });
-                  setModalVisible(false);
-                  setName('');
-                  setDueDate('');
+                onPress={async () => {
+                  try {
+                    await axios.post('http://192.168.100.166:8000/tasks/', {
+                      title: name,
+                      due_date: dueDate ? `${dueDate}T00:00:00` : null,
+                      user_id: userId
+                    });
+                    setModalVisible(false);
+                    setName('');
+                    setDueDate('');
+                    fetchTasks(); // Refresh list
+                  } catch (error) {
+                    console.error('Error saving task:', error);
+                  }
                 }}
                 underlayColor="#86efac"
               >

@@ -1,21 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Modal, TextInput, TouchableHighlight } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import axios from 'axios';
 
 const HealthScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [activity, setActivity] = useState('');
   const [time, setTime] = useState('');
+  const [healthEntries, setHealthEntries] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const userId = 1; // Temporary fixed user ID for prototype
 
-  const dummyData = [
-    { id: '1', title: 'Placeholder Workout 1' },
-    { id: '2', title: 'Placeholder Workout 2' },
-    { id: '3', title: 'Placeholder Workout 3' },
-  ];
+  useEffect(() => {
+    fetchHealthEntries();
+  }, []);
+
+  const fetchHealthEntries = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(`http://192.168.100.166:8000/health/?user_id=${userId}`);
+      setHealthEntries(response.data);
+    } catch (error) {
+      console.error('Error fetching health entries:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const renderItem = ({ item }) => (
     <View className="m-3 p-5 bg-gray-800 rounded-2xl shadow-md border border-red-400">
-      <Text className="text-lg font-semibold text-red-400">{item.title}</Text>
+      <Text className="text-lg font-semibold text-red-400">{item.activity}</Text>
     </View>
   );
 
@@ -23,7 +37,7 @@ const HealthScreen = () => {
     <View className="flex-1 bg-gray-900 p-5">
       <Text className="text-3xl font-extrabold mb-6 text-red-400">Health</Text>
       <FlatList
-        data={dummyData}
+        data={healthEntries}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         className="flex-1"
@@ -69,11 +83,20 @@ const HealthScreen = () => {
               </TouchableHighlight>
               <TouchableHighlight
                 className="rounded-xl p-3 shadow-sm w-2/5 bg-red-400 border border-red-400"
-                onPress={() => {
-                  console.log('Health Input:', { activity, time });
-                  setModalVisible(false);
-                  setActivity('');
-                  setTime('');
+                onPress={async () => {
+                  try {
+                    await axios.post('http://192.168.100.166:8000/health/', {
+                      activity: activity,
+                      time: time,
+                      user_id: userId
+                    });
+                    setModalVisible(false);
+                    setActivity('');
+                    setTime('');
+                    fetchHealthEntries(); // Refresh list
+                  } catch (error) {
+                    console.error('Error saving health entry:', error);
+                  }
                 }}
                 underlayColor="#fca5a5"
               >
