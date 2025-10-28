@@ -7,4 +7,4 @@ cd "$(dirname "$0")"
 source server/venv/bin/activate
 
 # Run the Uvicorn server
-uvicorn server.main:app --host 0.0.0.0 --reload
+uvicorn server.main:app --host 0.0.0.0 --port 8000
