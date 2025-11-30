@@ -46,14 +46,19 @@
 * Include the two selected UML diagrams (e.g., Use Case, Class, or Sequence Diagram).
     *   **UML Use Case Diagram:**
         ```mermaid
-        graph TD
-            actor User
-            subgraph LifeEase
-                User --> (Manage Tasks)
-                User --> (Manage School Activities)
-                User --> (Manage Health Entries)
-                User --> (Manage Profile)
-            end
+            graph TD
+    User["User"]
+    subgraph LifeEase
+        ManageTasks["Manage Tasks"]
+        ManageSchool["Manage School Activities"]
+        ManageHealth["Manage Health Entries"]
+        ManageProfile["Manage Profile"]
+    end
+
+    User --> ManageTasks
+    User --> ManageSchool
+    User --> ManageHealth
+    User --> ManageProfile
         ```
         *Short justification:* The Use Case Diagram provides a high-level view of the system's functionality from the end-user's perspective. It clearly delineates the primary interactions a user can have with the LifeEase system, such as managing tasks, school activities, health entries, and their profile. This diagram is excellent for understanding the system's boundaries and main functions without delving into implementation details.
 

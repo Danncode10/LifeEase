@@ -13,23 +13,23 @@
 
 * Include the Architectural Diagram illustrating the setup.
     ```mermaid
-    graph TD
-        subgraph Client [Presentation Tier]
-            A[Web Browser / Mobile App]
-        end
+        graph TD
+    subgraph Client["Presentation Tier"]
+        A["Web Browser / Mobile App"]
+    end
 
-        subgraph Server [Application Tier (Backend)]
-            B(FastAPI Application)
-        end
+    subgraph Server["Application Tier - Backend"]
+        B["FastAPI Application"]
+    end
 
-        subgraph Database [Data Tier]
-            C[SQLite Database]
-        end
+    subgraph Database["Data Tier"]
+        C["SQLite Database"]
+    end
 
-        A -- HTTP/HTTPS Requests --> B
-        B -- SQL Queries --> C
-        C -- Query Results --> B
-        B -- API Responses --> A
+    A -- HTTP/HTTPS Requests --> B
+    B -- SQL Queries --> C
+    C -- Query Results --> B
+    B -- API Responses --> A
     ```
 
 ## 5.2 Component Design
