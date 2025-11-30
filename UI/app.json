@@ -3,6 +3,19 @@
     "userInterfaceStyle": "automatic",
     "web": {
       "bundler": "metro"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "aa6601a8-ac6a-47ce-a4ca-69c036d7a9fd"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/aa6601a8-ac6a-47ce-a4ca-69c036d7a9fd"
+    },
+    "android": {},
+    "ios": {}
   }
 }
