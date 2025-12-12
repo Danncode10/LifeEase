@@ -16,11 +16,12 @@
 
 ## 2.2 Stakeholder Analysis
 * Present the Stakeholder Register (table format recommended):
-| Stakeholder Role     | Interest/Influence Level | Expected Involvement                                      |
-| :------------------- | :----------------------- | :-------------------------------------------------------- |
-| **End User**         | High / High              | Directly uses the application for daily management tasks. Provides explicit feedback on usability and feature requests. |
-| **Project Owner/Lead** | High / High              | Defines project vision, prioritizes features, and approves deliverables. Guides overall direction. |
-| **Developer**        | Medium / High            | Designs, develops, tests, and maintains the system. Involved in technical decisions and implementation. |
-| **Database Administrator** | Low / Medium             | Ensures data integrity, performance, and security of the database. Involved in setup and maintenance aspects. |
-| **System Administrator** | Low / Medium             | Manages server infrastructure, deployment, and overall system health. Ensures uptime and performance. |
-| **Tester**           | Medium / Medium          | Verifies system functionality against requirements, identifies bugs, and ensures quality. |
+
+    | Stakeholder Role                 | Interest/Influence Level | Expected Involvement                                                                              |
+    | :------------------------------- | :----------------------- | :------------------------------------------------------------------------------------------------- |
+    | **End User**                     | High / High              | Directly uses the application for daily management tasks. Provides explicit feedback on usability and feature requests. |
+    | **Project Owner/Lead**           | High / High              | Defines project vision, prioritizes features, and approves deliverables. Guides overall direction. |
+    | **Developer**                    | Medium / High            | Designs, develops, tests, and maintains the system. Involved in technical decisions and implementation. |
+    | **Database Administrator**       | Low / Medium             | Ensures data integrity, performance, and security of the database. Involved in setup and maintenance aspects. |
+    | **System Administrator**         | Low / Medium             | Manages server infrastructure, deployment, and overall system health. Ensures uptime and performance. |
+    | **Tester**                       | Medium / Medium          | Verifies system functionality against requirements, identifies bugs, and ensures quality. |
